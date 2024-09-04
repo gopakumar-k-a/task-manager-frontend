@@ -2,31 +2,32 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+
 const slides = [
   {
-    title: "Welcome to imageDrive",
+    title: "Welcome to Task Manager",
     description:
-      "An application that allows you to manage your images with ease. Login, Register, and start uploading!",
+      "An application designed to help you efficiently manage your tasks. Create, update, and track your tasks all in one place.",
   },
   {
-    title: "Register and Login",
+    title: "Real-Time Collaboration",
     description:
-      "Create an account using your Email ID and Phone number, and secure it with a password. Forgot your password? No worries, reset it anytime!",
+      "Work as a team with real-time updates. Any changes made to tasks are instantly reflected for all online users, keeping everyone in sync.",
   },
   {
-    title: "Add and Manage Images",
+    title: "Create and Organize Tasks",
     description:
-      "Easily add images with titles, view your uploads, and manage them all in one place. Edit or delete your images with just a click.",
+      "Easily add new tasks with titles, descriptions, and due dates. Organize your tasks by priority and status to stay on top of your work.",
   },
   {
-    title: "Rearrange Images",
+    title: "Edit and Update Tasks",
     description:
-      "Drag and drop to rearrange your images. Save the order that best suits your needs.",
+      "Need to make changes? Edit your tasks to update details or adjust priorities. Keep your task list up-to-date effortlessly.",
   },
   {
-    title: "Edit and Delete",
+    title: "Track Task Progress",
     description:
-      "Need to update an image or its title? Edit it! Want to remove it? Delete it with ease.",
+      "Monitor the progress of your tasks with visual indicators and filters. See how many tasks are completed, in progress, or pending.",
   },
 ];
 
@@ -40,52 +41,51 @@ const WelcomeSlider = () => {
   const previousSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
-  
+
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       nextSlide();
     }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white p-4 border rounded-lg">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white p-4 border rounded-lg">
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, x: -100 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-center items-center pb-4"
+      >
+        <h2 className="text-6xl font-bold mb-4">Task Manager</h2>
+      </motion.div>
+      <div className="w-full max-w-2xl">
         <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
+          key={currentSlide}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.5 }}
-          className="flex  justify-center items-center pb-4"
+          className="text-center"
         >
-          <h2 className="text-6xl font-bold mb-4 ">Image Drive</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            {slides[currentSlide].title}
+          </h2>
+          <p className="text-lg mb-8">{slides[currentSlide].description}</p>
         </motion.div>
-        <div className="w-full max-w-2xl">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            <h2 className="text-4xl font-bold mb-4">
-              {slides[currentSlide].title}
-            </h2>
-            <p className="text-lg mb-8">{slides[currentSlide].description}</p>
-          </motion.div>
-          <div className="flex justify-between items-center">
-            <GrFormPrevious
-              onClick={previousSlide}
-              className=" h-10 w-10 rounded-full hover:bg-slate-400 bg-white text-black "
-            />
-            <MdOutlineNavigateNext
-              onClick={nextSlide}
-              className=" h-10 w-10 rounded-full hover:bg-slate-400 bg-white text-black "
-            />
-          </div>
+        <div className="flex justify-between items-center">
+          <GrFormPrevious
+            onClick={previousSlide}
+            className="h-10 w-10 rounded-full hover:bg-slate-400 bg-white text-black cursor-pointer"
+          />
+          <MdOutlineNavigateNext
+            onClick={nextSlide}
+            className="h-10 w-10 rounded-full hover:bg-slate-400 bg-white text-black cursor-pointer"
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

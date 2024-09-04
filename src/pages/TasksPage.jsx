@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import TaskMain from "../components/Tasks/MyTasksMain";
 
 function TasksPage() {
   return (
-<>
-<h1>tasks page</h1>
-</>
-  )
+    <>
+      <TaskMain />
+    </>
+  );
 }
 
-export default TasksPage
+export default TasksPage;

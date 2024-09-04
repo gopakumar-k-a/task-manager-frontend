@@ -6,4 +6,10 @@ export const END_POINTS = {
   UPLOAD_IMAGES: "/api/image/upload-images",
   //profile
   UPDATE_PASSWORD: "/api/profile/reset-password",
+
+  //task
+  TASK_ADD: "/api/task/add",
+  TASK_GET: "/api/task/all-tasks",
+  TASK_EDIT: "/api/task/edit-task",
+  TASK_DELETE:"/api/task/delete-task"
 };

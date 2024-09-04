@@ -2,17 +2,24 @@ import { createContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Constants } from "../constants/Constants";
 import { useSelector } from "react-redux";
-
+// import useGetTasks from "../hooks/useGetTasks";
+import {
+  deleteTaskById,
+  setNewTask,
+  updateEditedTask,
+} from "../redux/slice/taskSlice";
+import { useDispatch } from "react-redux";
 export const socketContext = createContext();
 
 export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   let userId;
   const { user } = useSelector((state) => state.auth);
+  // const { tasks } = useGetTasks();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (user) {
       userId = user.credentials._id;
-      console.log("user id ", userId);
 
       const newSocket = io(
         Constants.SERVER_URL,
@@ -23,6 +30,16 @@ export const SocketContextProvider = ({ children }) => {
           },
         }
       );
+      newSocket.on("taskAdded", (newTask) => {
+        dispatch(setNewTask(newTask));
+      });
+      newSocket.on("taskEdited", (editedTask) => {
+        dispatch(updateEditedTask(editedTask));
+      });
+      newSocket.on("taskDeleted", (deletedTaskId) => {
+
+        dispatch(deleteTaskById(deletedTaskId));
+      });
       setSocket(newSocket);
       return () => {
         console.log("Cleaning up socket connection");

@@ -42,7 +42,7 @@ function Register() {
   return (
     <div className="border p-6 rounded-lg border-gray-300">
       <div className="flex justify-center">
-        <h2 className="text-4xl font-bold mb-4">Image Drive</h2>
+        <h2 className="text-4xl font-bold mb-4">TASK MANAGER</h2>
       </div>
 
       <Formik

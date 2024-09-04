@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ImExit } from "react-icons/im";
-import { FaImages } from "react-icons/fa";
+// import { FaImages } from "react-icons/fa";
+import { SiTodoist } from "react-icons/si";
 import { logout } from "../../redux/slice/authSlice";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
@@ -33,8 +34,8 @@ function NavBar() {
               }}
               className="flex text-blue-600"
             >
-              <FaImages className="w-6 h-6 mt-3 mr-2 mb-3" />
-              <div className="mt-3 mb-3 font-bold text-xl">Image Drive</div>
+              <SiTodoist className="w-6 h-6 mt-3 mr-2 mb-3" />
+              <div className="mt-3 mb-3 font-bold text-xl">Task Manager</div>
             </motion.div>
           </Link>
         </div>
@@ -81,40 +82,29 @@ function NavBar() {
               </li>
               <li className="py-2 lg:py-0">
                 <Link
-                  to="/profile"
+                  to="/my-tasks"
                   className={`${
-                    isActive("/profile")
+                    isActive("/my-tasks")
                       ? "bg-gray-200 rounded-lg"
                       : "hover:bg-gray-200 hover:rounded-lg"
                   } text-black px-3 py-2 font-bold`}
                 >
-                  My Profile
+                  My Tasks
                 </Link>
               </li>
               <li className="py-2 lg:py-0">
                 <Link
-                  to="/my-uploads"
+                  to="/tasks-analytics"
                   className={`${
-                    isActive("/my-uploads")
+                    isActive("/tasks-analytics")
                       ? "bg-gray-200 rounded-lg"
                       : "hover:bg-gray-200 hover:rounded-lg"
                   } text-black px-3 py-2 font-bold`}
                 >
-                  My Images
+                  Tasks Analytics
                 </Link>
               </li>
-              <li className="py-2 lg:py-0">
-                <Link
-                  to="/upload"
-                  className={`${
-                    isActive("/upload")
-                      ? "bg-gray-200 rounded-lg"
-                      : "hover:bg-gray-200 hover:rounded-lg"
-                  } text-black px-3 py-2 font-bold`}
-                >
-                  upload
-                </Link>
-              </li>
+             
               <li
                 className="py-2 lg:py-0 text-red-600 flex items-center justify-center"
                 onClick={() => dispatch(logout())}
