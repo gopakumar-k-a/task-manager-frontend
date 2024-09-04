@@ -31,7 +31,6 @@ const taskSlice = createSlice({
     },
     deleteTaskById: (state, action) => {
       const { deletedTaskId } = action.payload;
-      console.log("deletedTaskId ", deletedTaskId);
 
       if (state.tasks.length > 0) {
         const deletedTaskIndex = state.tasks.findIndex(

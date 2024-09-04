@@ -7,9 +7,6 @@ import { Suspense } from "react";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import PublicRoute from "./components/auth/PublicRoute";
 import NotFoundPage from "./pages/NotFoundPage";
-const MyProfile = lazy(() => import("./pages/MyProfilePage"));
-const MyUploads = lazy(() => import("./pages/MyUploads"));
-const UploadImage = lazy(() => import("./pages/UploadImage"));
 const TasksPage = lazy(() => import("./pages/TasksPage"));
 const TasksAnalytics = lazy(() => import("./pages/TasksAnalytics"));
 function App() {
@@ -26,12 +23,8 @@ function App() {
             }
           >
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="profile" element={<MyProfile />} />
-            <Route path="upload" element={<UploadImage />} />
-            <Route path="my-uploads" element={<MyUploads />} /> */}
-            <Route path="my-tasks" element={<TasksPage />} /> 
-            <Route path="tasks-analytics" element={<TasksAnalytics />} /> 
-
+            <Route path="my-tasks" element={<TasksPage />} />
+            <Route path="tasks-analytics" element={<TasksAnalytics />} />
           </Route>
           <Route
             path="/login"

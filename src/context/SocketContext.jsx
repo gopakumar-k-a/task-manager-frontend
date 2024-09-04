@@ -42,11 +42,9 @@ export const SocketContextProvider = ({ children }) => {
       });
       setSocket(newSocket);
       return () => {
-        console.log("Cleaning up socket connection");
         newSocket.close();
       };
     } else {
-      console.log("User is not logged in, closing socket if exists");
       if (socket) {
         socket.close();
         setSocket(null);

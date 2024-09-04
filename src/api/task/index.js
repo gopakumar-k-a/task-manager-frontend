@@ -17,7 +17,6 @@ export const editTask = async (payload) => {
 };
 
 export const deleteTask = async (payload) => {
-  console.log("payload ", payload);
 
   const response = await axiosUserInstance.delete(
     `${END_POINTS.TASK_DELETE}/${payload}`,

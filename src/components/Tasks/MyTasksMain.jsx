@@ -6,26 +6,10 @@ import useGetTasks from "../../hooks/useGetTasks";
 import ApiLoader from "../Loader/ApiLoader";
 import { deleteTask, editTask } from "../../api/task";
 function MyTasksMain() {
-  // const taskData = {
-  //   _id: "66d6a6d39431b240957600eb",
-  //   title: "demo",
-  //   description:
-  //     "asdfssddfssssssssssssssssssssssssssssssssssssssssssssssssssssssssdfasfserawesraetesgdzxfgd",
-  //   status: "todo",
-  //   priority: "medium",
-  //   dueDateTime: "2024-09-03T10:30:00.000Z",
-  //   createdAt: "2024-09-03T06:04:03.992Z",
-  //   updatedAt: "2024-09-03T06:04:03.992Z",
-  //   updatedBy: "John Doe", // Additional field
-  //   createdBy: "gopu",
-  //   __v: 0,
-  // };
 
   const { tasks, loading } = useGetTasks();
   const [editSubmitLoading, setEditSubmitLoading] = useState(false);
-  // const [taskData, setTaskData] = useState([]);
   const onUpdate = async (payload) => {
-    console.log("update  values ", payload);
     try {
       setEditSubmitLoading(true);
       await editTask(payload);
@@ -58,8 +42,7 @@ function MyTasksMain() {
   return (
     <>
       <div>
-        {/* <div className="flex justify-start">
-        </div> */}
+  
         <div className="flex flex-col sm:flex-row justify-between  space-y-6 sm:space-y-0 sm:space-x-8 p-6">
           {/* Clock Card */}
           <ClockCard />

@@ -60,7 +60,6 @@ const AddTaskDialogue = () => {
 
   const handleSubmit = async (values) => {
     try {
-      console.log("values ", values);
 
       setLoading(true);
       //   const res = await addTask(values);
@@ -70,7 +69,6 @@ const AddTaskDialogue = () => {
         toast.success("Task added successfully");
       }
     } catch (error) {
-      console.log(error);
       toast.error("Failed to add task");
     } finally {
       setLoading(false);
